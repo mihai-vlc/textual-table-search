@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "my-app"
+version = "0.1.0"
+description = ""
+authors = ["Mihai Ionut Vilcu <ionutvmi@gmail.com>"]
+readme = "README.md"
+packages = [{include = "my_app", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pypika = "^0.48.9"
+
+[tool.poetry.scripts]
+start = 'my_app.main:run'
+
+[tool.pyright]
+reportMissingTypeStubs = false
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
