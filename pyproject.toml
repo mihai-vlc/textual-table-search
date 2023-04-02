@@ -12,6 +12,10 @@ pypika = "^0.48.9"
 
 [tool.poetry.scripts]
 start = 'my_app.main:run'
+migrations = 'migrations.run_migrations:run'
+
+[tool.poetry.group.dev.dependencies]
+autopep8 = "^2.0.2"
 
 [tool.pyright]
 reportMissingTypeStubs = false
