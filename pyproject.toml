@@ -9,13 +9,16 @@ packages = [{include = "my_app", from = "src"}]
 [tool.poetry.dependencies]
 python = "^3.11"
 pypika = "^0.48.9"
+yoyo-migrations = "^8.2.0"
 
-[tool.poetry.scripts]
-start = 'my_app.main:run'
-migrations = 'migrations.run_migrations:run'
+[tool.poe.tasks]
+start = "python src/my_app/main.py"
+migrations-list = 'yoyo list'
+migrations-apply = 'yoyo apply'
 
 [tool.poetry.group.dev.dependencies]
 autopep8 = "^2.0.2"
+poethepoet = "^0.19.0"
 
 [tool.pyright]
 reportMissingTypeStubs = false

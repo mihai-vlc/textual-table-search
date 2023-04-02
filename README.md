@@ -1,4 +1,16 @@
-## TODO
+# Example sqlite3 app with pypika
 
-Use this:
-https://ollycope.com/software/yoyo/latest/#sqlite
+## Start
+
+```sh
+poetry install
+
+poe start
+```
+
+## Migrations
+
+```
+poe migrations-list
+poe migrations-apply
+```
