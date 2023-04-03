@@ -1,4 +1,4 @@
-# Example sqlite3 app with pypika
+# Example sqlite3 app with textual UI
 
 ## Start
 
@@ -14,3 +14,7 @@ poe start
 poe migrations-list
 poe migrations-apply
 ```
+
+## UI library
+
+https://textual.textualize.io/
