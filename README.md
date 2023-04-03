@@ -1,5 +1,7 @@
 # Example sqlite3 app with textual UI
 
+![screenshot](data/screenshot.png)
+
 ## Start
 
 ```sh
