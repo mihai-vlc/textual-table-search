@@ -39,17 +39,34 @@ class CustomApp(App):
 
     def on_mount(self) -> None:
         table = self.query_one(DataTable)
-        table.cursor_type = "row"
+        table.cursor_type = "none"
         table.zebra_stripes = True
-        table.add_columns('id', 'first_name', 'last_name')
+        table.add_columns("id", "first_name", "last_name",
+                          "email", "gender", "ip_address")
         rows = get_users()
+        table.add_rows(rows)
+        search_input = self.query_one(".search_input")
+        self.set_focus(search_input)
+
+    def on_input_submitted(self,  message: Input.Changed) -> None:
+        self.update_table(message.value)
+
+    def on_button_pressed(self) -> None:
+        search_input = self.query_one(".search_input")
+        self.update_table(search_input.value)
+        pass
+
+    def update_table(self, query: str = ""):
+        rows = get_users(query)
+        table = self.query_one(DataTable)
+        table.clear()
         table.add_rows(rows)
 
 
-def get_users():
+def get_users(query=""):
     con = sqlite3.connect(db_path)
-    q = "SELECT id, first_name, last_name FROM users WHERE gender IN (?, ?) LIMIT 50"
-    result = con.execute(q, ["Male", "Female"])
+    q = "SELECT id, first_name, last_name, email, gender, ip_address FROM users WHERE first_name LIKE ? OR last_name LIKE ?"
+    result = con.execute(q, [f"%{query}%", f"%{query}%"])
 
     return iter(result)
 
